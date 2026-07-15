@@ -18,6 +18,16 @@ const macScripts = [
   "scripts/lib/dream-skin-macos.sh",
 ];
 
+const windowsScripts = [
+  "scripts/check-dream-skin.ps1",
+  "scripts/install-dream-skin.ps1",
+  "scripts/restore-dream-skin.ps1",
+  "scripts/start-after-exit.ps1",
+  "scripts/start-dream-skin.ps1",
+  "scripts/verify-dream-skin.ps1",
+  "scripts/wait-and-start-windows.ps1",
+];
+
 test("Skill metadata advertises macOS and Windows support", () => {
   const skill = read("SKILL.md");
   assert.match(skill, /macOS or Windows/);
@@ -31,6 +41,13 @@ test("macOS scripts are executable and pass zsh syntax validation", () => {
     const absolutePath = join(root, relativePath);
     assert.ok(statSync(absolutePath).mode & 0o111, `${relativePath} must be executable`);
     execFileSync("/bin/zsh", ["-n", absolutePath]);
+  }
+});
+
+test("Windows PowerShell scripts include a UTF-8 BOM for PowerShell 5.1", () => {
+  for (const relativePath of windowsScripts) {
+    const bytes = readFileSync(join(root, relativePath));
+    assert.deepEqual([...bytes.subarray(0, 3)], [0xef, 0xbb, 0xbf], `${relativePath} must start with UTF-8 BOM`);
   }
 });
 
