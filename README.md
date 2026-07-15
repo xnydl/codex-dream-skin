@@ -1,6 +1,6 @@
 # Codex Dream Skin
 
-Windows Codex 桌面版完整换肤工具：顶部使用独立视觉横幅，下方功能卡、项目选择器和输入框继续保留 Codex 原生结构与交互。
+macOS 与 Windows Codex 桌面版完整换肤工具：顶部使用独立视觉横幅，下方功能卡、项目选择器和输入框继续保留 Codex 原生结构与交互。
 
 > 🎁 **免费领取完整 Skill**<br>
 > 前往 [世事宜AI · 免费工具](https://ssyai.xytpark.cn/purchase)，选择 **Codex Dream Skin**。领取后，完整 ZIP 会自动发送到收货邮箱。
@@ -10,7 +10,8 @@ Windows Codex 桌面版完整换肤工具：顶部使用独立视觉横幅，下
 ## 特点
 
 - 不使用整张截图覆盖界面，按钮、项目选择器和输入框都可正常操作
-- 通过本机 CDP 动态注入，不修改官方 `app.asar` 或 WindowsApps 文件
+- 同一套 Skill 同时支持 macOS 与 Windows
+- 通过本机 CDP 动态注入，不修改官方 `app.asar`、macOS 应用包或 WindowsApps 文件
 - 支持 Codex 重启、页面刷新和升级后重新应用
 - 提供桌面启动快捷方式与一键恢复
 - CDP 仅监听 `127.0.0.1`，安装前会检查环境和端口
@@ -39,9 +40,24 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-dream-skin
 
 以后双击桌面的 **Codex Dream Skin** 启动。需要恢复原版时，双击 **Codex Dream Skin - Restore**。
 
+## macOS 安装
+
+要求：
+
+- macOS Codex 桌面版（`ChatGPT.app` 或 `Codex.app`）
+- Node.js 22 LTS 或更新版本
+
+首次安装：
+
+```bash
+./scripts/install-dream-skin.command
+```
+
+以后双击桌面的 **Codex Dream Skin.command**。如果 Codex 已打开，启动器会等待你按 `Command + Q` 正常退出，然后自动应用皮肤并重新打开。恢复原版使用 **Codex Dream Skin - Restore.command**。
+
 ## 安全边界
 
-- 不替换、不接管、不修改 Codex 官方程序文件
+- 不替换、不接管、不修改任一平台的 Codex 官方程序文件
 - 不读取或上传账号、任务、聊天记录和登录信息
 - 调试端口只绑定本机回环地址，请勿转发到局域网或公网
 - 官方升级导致结构变化时，可重新运行安装脚本并获取最新版

@@ -6,7 +6,7 @@
 2. The sidebar is blush glass rather than merely changing the accent color.
 3. All real Codex controls remain interactive; the skin is not a screenshot overlay.
 4. The skin survives route changes and renderer reloads while the injector daemon runs.
-5. The official Store package and `app.asar` remain unchanged.
+5. The official Windows Store package or macOS app bundle and `app.asar` remain unchanged.
 6. Restore removes the injected DOM/CSS and install/restore can be repeated.
 
 ## Functional checks
@@ -17,7 +17,8 @@
 - Composer: type text, verify caret/readability, then clear it without sending.
 - Reload: use CDP `Page.reload`, wait, and confirm the injection marker returns.
 - Restore/reapply cycle: remove live skin, verify marker absent, apply again, verify marker present.
-- Update resilience: resolve the current `OpenAI.Codex` Appx location dynamically; never store a versioned WindowsApps path.
+- Update resilience: resolve the current `OpenAI.Codex` Appx location dynamically on Windows and the current ChatGPT/Codex app bundle on macOS.
+- Platform parity: run check/install/queued launch/verify/restore once on each supported operating system before release.
 
 ## Visual checks
 
@@ -31,3 +32,4 @@
 
 - Start when the debug port is occupied: fail with a clear message or use a caller-selected port.
 - Start after Codex updates: package discovery and injection still work without patching installed files.
+- Start while Codex is already open without CDP: queue safely and wait for a normal exit; never force-kill the app.
