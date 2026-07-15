@@ -40,12 +40,12 @@ if (-not $NoShortcuts) {
   $desktop = [Environment]::GetFolderPath('Desktop')
   $startMenu = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs'
   $powershell = (Get-Command powershell.exe).Source
-  $startScript = Join-Path $PSScriptRoot 'start-dream-skin.ps1'
+  $startScript = Join-Path $PSScriptRoot 'start-after-exit.ps1'
   $restoreScript = Join-Path $PSScriptRoot 'restore-dream-skin.ps1'
   foreach ($folder in @($desktop, $startMenu)) {
     $shortcut = $shell.CreateShortcut((Join-Path $folder 'Codex Dream Skin.lnk'))
     $shortcut.TargetPath = $powershell
-    $shortcut.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$startScript`" -Port $Port -RestartExisting"
+    $shortcut.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$startScript`" -Port $Port"
     $shortcut.WorkingDirectory = $SkillRoot
     $shortcut.Description = 'Launch Codex with the Dream/Fiona full interface skin'
     $shortcut.Save()
