@@ -716,6 +716,14 @@ CRLF_BACKUP="$TMP/config-crlf-backup.json"
 /usr/bin/cmp -s "$CRLF_CONFIG" "$TMP/original-crlf.toml"
 
 /usr/bin/env -u HOME /bin/bash -c '. "$1/scripts/common-macos.sh"; [ -n "$HOME" ] && [ "$SKIN_VERSION" = "1.2.0" ]' _ "$ROOT"
-"$ROOT/scripts/doctor-macos.sh" >/dev/null
+# Doctor must pass on a clean machine: seed a minimal installed state (active
+# theme from repo assets + config stub) into an isolated HOME.
+DOCTOR_HOME="$TMP/doctor-home"
+DOCTOR_STATE="$DOCTOR_HOME/Library/Application Support/CodexDreamSkinStudio"
+/bin/mkdir -p "$DOCTOR_STATE/theme" "$DOCTOR_HOME/.codex"
+/bin/cp "$ROOT/assets/theme.json" "$DOCTOR_STATE/theme/theme.json"
+/bin/cp "$ROOT/assets/portal-hero.png" "$DOCTOR_STATE/theme/portal-hero.png"
+/usr/bin/printf '%s\n' '[desktop]' 'appearanceTheme = "system"' > "$DOCTOR_HOME/.codex/config.toml"
+/usr/bin/env HOME="$DOCTOR_HOME" "$ROOT/scripts/doctor-macos.sh" >/dev/null
 
 printf 'PASS: syntax, payload, bundled presets, preset seeding, runtime-state safety, custom-theme, config round-trips, HOME recovery, signature, and doctor checks.\n'

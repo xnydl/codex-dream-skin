@@ -110,7 +110,14 @@ function Write-DreamSkinBytesAtomically {
       Assert-DreamSkinFileUnchanged -Path $fullPath -ExpectedBytes $ExpectedBytes
     }
     if ([System.IO.File]::Exists($fullPath)) {
-      [System.IO.File]::Replace($temporary, $fullPath, $null)
+      # .NET Framework (Windows PowerShell 5.1) rejects a null backup path in
+      # File.Replace; use a transient backup on the same volume and delete it.
+      $replaceBackup = Join-Path $directory ".$fileName.$PID.$([guid]::NewGuid().ToString('N')).bak"
+      try {
+        [System.IO.File]::Replace($temporary, $fullPath, $replaceBackup)
+      } finally {
+        if ([System.IO.File]::Exists($replaceBackup)) { [System.IO.File]::Delete($replaceBackup) }
+      }
     } else {
       [System.IO.File]::Move($temporary, $fullPath)
     }
@@ -170,7 +177,9 @@ function Assert-DreamSkinTomlLineEditingSafe {
   if ($Content.Contains('"""') -or $Content.Contains("'''")) {
     throw 'Refusing to rewrite TOML containing multiline strings; use single-line values before installing Dream Skin.'
   }
-  foreach ($match in [regex]::Matches($Content, '(?m)^[^\r\n]*=[\t ]*\[[^\r\n]*$')) {
+  # \r?$ because .NET Framework multiline $ matches only before \n, so a bare
+  # $ never fires on CRLF content and the multiline-array gate would go dark.
+  foreach ($match in [regex]::Matches($Content, '(?m)^[^\r\n]*=[\t ]*\[[^\r\n]*\r?$')) {
     if ((Get-DreamSkinTomlArrayBracketBalance -Line $match.Value) -ne 0) {
       throw 'Refusing to rewrite TOML containing multiline arrays; use single-line arrays before installing Dream Skin.'
     }
@@ -272,7 +281,9 @@ function Set-DreamSkinSectionSetting {
   if ($matcher.Matches($Body).Count -gt 1) {
     throw "Refusing to rewrite duplicate '$Key' entries in the [desktop] section."
   }
-  if ($null -eq $Line) { return $matcher.Replace($Body, '', 1) }
+  # PowerShell binds $null to '' for [string] parameters, so an absent saved
+  # line arrives as an empty string; both mean "remove the managed key line".
+  if ([string]::IsNullOrEmpty($Line)) { return $matcher.Replace($Body, '', 1) }
   $normalizedLine = $Line.TrimEnd("`r", "`n") + $NewLine
   if ($matcher.IsMatch($Body)) {
     $literalReplacement = $normalizedLine.Replace('$', '$$')

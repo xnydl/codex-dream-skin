@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test macos/tests/ windows/tests/"
+    "test": "node --test macos/tests/*.test.mjs windows/tests/*.test.mjs"
   }
 }
