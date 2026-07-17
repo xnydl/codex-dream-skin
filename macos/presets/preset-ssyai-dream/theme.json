@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "preset-ssyai-dream",
+  "name": "世事宜梦境",
+  "brandSubtitle": "CODEX DREAM SKIN",
+  "tagline": "粉紫星光落进工作台，写代码也有氛围感。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "◉  选择项目",
+  "statusText": "DREAM SKIN ONLINE",
+  "quote": "MAKE SOMETHING WONDERFUL",
+  "image": "background.jpg",
+  "appearance": "auto",
+  "art": {
+    "focusX": 0.74,
+    "focusY": 0.4,
+    "safeArea": "left",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#140d24",
+    "panel": "#1d1330",
+    "panelAlt": "#271a40",
+    "accent": "#ff85c2",
+    "accentAlt": "#ffa5d2",
+    "secondary": "#8f6bff",
+    "highlight": "#ff5fae",
+    "text": "#f4edff",
+    "muted": "#a394c4",
+    "line": "rgba(255, 133, 194, .26)"
+  },
+  "promoTitle": "世事宜AI 免费提供",
+  "promoSub": "ssyai.xytpark.cn",
+  "promoUrl": "https://ssyai.xytpark.cn/purchase"
+}
