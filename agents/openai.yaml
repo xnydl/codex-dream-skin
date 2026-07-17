@@ -1,4 +1,4 @@
 interface:
   display_name: "Codex Dream Skin"
-  short_description: "Apply and restore the macOS or Windows Codex skin"
-  default_prompt: "Use $codex-dream-skin to apply, verify, update, or restore the full Codex desktop skin on this Mac or Windows PC."
+  short_description: "Adaptive full-window theme for macOS/Windows Codex desktop"
+  default_prompt: "Use $codex-dream-skin to install, customize, switch, verify, or restore the adaptive Codex desktop theme on this Mac or Windows PC."
