@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "preset-caishen-readable",
+  "name": "财神护航 · 清爽可读",
+  "brandSubtitle": "CODEX DREAM SKIN",
+  "tagline": "柔和财神背景，保留财气，同时把阅读区留干净。",
+  "projectPrefix": "选择项目 · ",
+  "projectLabel": "◉  选择项目",
+  "statusText": "DREAM SKIN ONLINE",
+  "quote": "SHIP GOOD THINGS",
+  "image": "background.jpg",
+  "appearance": "light",
+  "art": {
+    "focusX": 0.79,
+    "focusY": 0.52,
+    "safeArea": "left",
+    "taskMode": "banner"
+  },
+  "colors": {
+    "background": "#fff8ef",
+    "panel": "rgba(255, 250, 242, 0.92)",
+    "panelAlt": "rgba(255, 241, 222, 0.84)",
+    "accent": "#d96b42",
+    "accentAlt": "#e8b866",
+    "secondary": "#e8b866",
+    "highlight": "#2aa876",
+    "text": "#35251c",
+    "muted": "#7c6253",
+    "line": "rgba(217, 107, 66, 0.20)"
+  },
+  "promoTitle": "Caishen Readable",
+  "promoSub": "Public-safe community preset",
+  "promoUrl": "https://codex-theme-gallery.howardhua.chatgpt.site/themes/caishen-readable?utm_source=xnydl-codex-dream-skin&utm_medium=preset&utm_campaign=caishen-readable"
+}

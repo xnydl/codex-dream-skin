@@ -32,6 +32,13 @@ distribution:
 - Default preset and promo metadata reference 世事宜AI instead of upstream
   sponsors.
 
+## Community preset artwork
+
+`presets/preset-caishen-readable/background.jpg` is a public-safe community
+theme background contributed from `ChannelerH/codex-skin-packs`. It contains
+original/generated artwork only and does not include private Codex workspace
+screenshots, sidebars, task names, chats, file paths, or project files.
+
 ## Runtime
 
 This project does not redistribute Node.js. At runtime it validates and uses the Node.js executable already signed and bundled inside the user's official Codex desktop application.
