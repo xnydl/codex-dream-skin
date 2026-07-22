@@ -64,8 +64,9 @@ CDP is powerful and unauthenticated on loopback. Prefer Restore when you are don
 
 ## Bundled presets
 
-A fresh install seeds six procedural abstract presets into your theme
-library (pure Node + zlib, no photos, no third-party art or likeness).
+A fresh install seeds seven public-safe presets into your theme
+library: six procedural abstract presets plus one community contributed
+Caishen Readable preset. They contain no private Codex screenshots.
 **世事宜梦境 / ssyai-dream** is the featured default of this distribution:
 
 ```bash
@@ -76,12 +77,16 @@ It is generated at `2560 × 1440` by `presets/generate-ssyai-preset.mjs`; the
 left half stays calm for native home content and the pink-violet glow sits on
 the right.
 
-The other five presets — **午夜极光 / 樱粉晨曦 / 琥珀黄昏 / 森野薄雾 /
-赛博霓虹** — come from `presets/generate-presets.mjs`. Apply one directly,
-for example:
+The other presets — **午夜极光 / 樱粉晨曦 / 琥珀黄昏 / 森野薄雾 /
+赛博霓虹 / 财神护航 · 清爽可读** — are seeded into the same saved-theme
+library. Apply one directly, for example:
 
 ```bash
 ~/.codex/codex-dream-skin-studio/scripts/switch-theme-macos.sh --id preset-midnight-aurora
+```
+
+```bash
+~/.codex/codex-dream-skin-studio/scripts/switch-theme-macos.sh --id preset-caishen-readable
 ```
 
 Seeding is idempotent and only manages `preset-*` packs — your own `custom-*`

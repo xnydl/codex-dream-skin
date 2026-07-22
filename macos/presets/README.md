@@ -17,6 +17,19 @@
 
 Windows 端的默认壁纸（`windows/assets/dream-reference.jpg`）与本预设同源同字节。
 
+## 社区预设：财神护航 · 清爽可读
+
+`preset-caishen-readable/` 是一套 public-safe 财神主题预设：主视觉放在右侧，
+左侧留出低信息阅读区，任务页使用更安静的 banner 模式。背景不包含 Codex
+私有截图、任务名、聊天、侧栏或文件路径。
+
+安装后可直接切换：
+
+```bash
+~/.codex/codex-dream-skin-studio/scripts/switch-theme-macos.sh \
+  --id preset-caishen-readable
+```
+
 ## 一套预设的结构
 
 ```
@@ -50,7 +63,7 @@ preset-<slug>/
 
 ### A. 程序化生成（推荐，零版权）
 
-`generate-presets.mjs` 是一个**纯 Node + 内置 zlib** 的确定性生成器（无第三方依赖），用多层渐变 + 光晕 + 暗角画出五套抽象背景，再用 macOS `sips` 压成 JPEG。同样的输入永远产出同样的字节，所以提交的资产 diff 稳定。它只管理脚本 `PRESETS` 数组中的程序化主题，不会处理或覆盖实测精选主题。
+`generate-presets.mjs` 是一个**纯 Node + 内置 zlib** 的确定性生成器（无第三方依赖），用多层渐变 + 光晕 + 暗角画出五套抽象背景，再用 macOS `sips` 压成 JPEG。同样的输入永远产出同样的字节，所以提交的资产 diff 稳定。它只管理脚本 `PRESETS` 数组中的程序化主题，不会处理或覆盖社区贡献的精选主题。
 
 加一套：在 `PRESETS` 数组追加一项（`slug` / `name` / `bg` / `lights` / `colors` …），然后：
 
